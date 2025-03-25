@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #78a5ae;
+}
+
+textarea {
+    background: #f5ffe6;
+    width: 50%;
+    height: 100px;
+    margin: 10px;
+}
+
+select, button {
+    background-color:#708ca9;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: #708ca9;
+}
+
+h2 {
+    color: #000000;
+}

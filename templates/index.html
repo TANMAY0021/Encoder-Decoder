@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encoding & Decoding Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Encoding & Decoding Tool</h2>
+    <textarea id="inputText" placeholder="Enter text or code..."></textarea>
+
+    <select id="encodingType">
+        <option value="base64">Base64</option>
+        <option value="hex">Hex</option>
+        <option value="ascii-decimal">ASCII to Decimal</option>
+        <option value="ascii-binary">ASCII to Binary</option>
+        <option value="ascii-hex">ASCII to Hex</option>
+        <option value="decimal-ascii">Decimal to ASCII</option>
+        <option value="binary-ascii">Binary to ASCII</option>
+        <option value="hex-ascii">Hex to ASCII</option>
+    </select>
+
+    <button onclick="processData('encode')">Encode</button>
+    <button onclick="processData('decode')">Decode</button>
+
+    <h3>Result:</h3>
+    <p id="result"></p>
+
+    <script>
+        function processData(action) {
+            const text = document.getElementById("inputText").value;
+            const encodingType = document.getElementById("encodingType").value;
+
+            fetch("/process", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text, encodingType, action })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("result").innerText = data.result)
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
